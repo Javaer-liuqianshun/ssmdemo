@@ -13,10 +13,9 @@
 		<spring.version>4.2.4.RELEASE</spring.version>
 		<mybatis.version>3.2.8</mybatis.version>
 		<mybatis.spring.version>1.2.2</mybatis.spring.version>
-		<mybatis.paginator.version>1.2.15</mybatis.paginator.version>
 		<mysql.version>5.1.32</mysql.version>
 		<slf4j.version>1.6.4</slf4j.version>
-		<jackson.version>2.4.2</jackson.version>
+		<fastjson.version>1.2.38</fastjson.version>
 		<druid.version>1.0.9</druid.version>
 		<httpclient.version>4.3.5</httpclient.version>
 		<jstl.version>1.2</jstl.version>
@@ -44,12 +43,12 @@
 			<artifactId>commons-net</artifactId>
 			<version>${commons-net.version}</version>
 		</dependency>
-		<!-- Jackson Json处理工具包 -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>${jackson.version}</version>
-		</dependency>
+		<!-- fastjson Json处理工具包 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
 		<!-- 单元测试 -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -74,11 +73,7 @@
 			<artifactId>mybatis-spring</artifactId>
 			<version>${mybatis.spring.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.github.miemiedev</groupId>
-			<artifactId>mybatis-paginator</artifactId>
-			<version>${mybatis.paginator.version}</version>
-		</dependency>
+		<!-- mybaitis 分页插件 -->
 		<dependency>
 			<groupId>com.github.pagehelper</groupId>
 			<artifactId>pagehelper</artifactId>
@@ -138,17 +133,30 @@
 			<artifactId>jstl</artifactId>
 			<version>${jstl.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>${servlet-api.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jsp-api</artifactId>
-			<version>${jsp-api.version}</version>
-			<scope>provided</scope>
-		</dependency>
 	</dependencies>
+    <build>
+        <!--配置打包时不过滤非java文件开始  -->
+        <!--说明，在进行模块化开发打jar包时，maven会将非java文件过滤掉，
+        xml,properties配置文件等，但是这些文件又是必需的，
+        使用此配置可以在打包时将不会过滤这些必需的配置文件。
+        -->
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+    </build>
 </project>

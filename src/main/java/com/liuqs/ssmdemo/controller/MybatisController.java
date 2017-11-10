@@ -7,6 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.liuqs.ssmdemo.service.MybatisService;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+/**
+ * 测试SSM是否整合成功
+ */
 @Controller
 @RequestMapping("mybatis")
 public class MybatisController {
@@ -15,10 +20,12 @@ public class MybatisController {
 	private MybatisService mybatisService;
 	
 	@RequestMapping("")
-	public void fn1(){
+	@ResponseBody
+	public String fn1(){
 		List user = mybatisService.user();
 		for (Object object : user) {
 			System.out.println(object);
 		}
+		return "SSM Test Success!";
 	}
 }
