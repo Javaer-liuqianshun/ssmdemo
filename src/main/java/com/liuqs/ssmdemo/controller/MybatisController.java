@@ -18,10 +18,10 @@ public class MybatisController {
 
 	@Autowired
 	private MybatisService mybatisService;
-	
-	@RequestMapping("")
+
+	@RequestMapping(value = "", produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String fn1(){
+	public String fn1() {
 		List user = mybatisService.user();
 		for (Object object : user) {
 			System.out.println(object);
