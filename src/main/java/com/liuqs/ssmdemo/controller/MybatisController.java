@@ -1,7 +1,11 @@
 package com.liuqs.ssmdemo.controller;
 
+import java.util.Iterator;
 import java.util.List;
 
+import com.liuqs.ssmdemo.pojo.Blog;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +17,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * 测试SSM是否整合成功
  */
 @Controller
-@RequestMapping("mybatis")
+@RequestMapping("mapper")
 public class MybatisController {
+
+    private static Logger logger = LoggerFactory.getLogger(MybatisController.class);
 
 	@Autowired
 	private MybatisService mybatisService;
@@ -22,10 +28,11 @@ public class MybatisController {
 	@RequestMapping(value = "", produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String fn1() {
-		List user = mybatisService.user();
-		for (Object object : user) {
-			System.out.println(object);
+		List<Blog> list = mybatisService.queryAllBlog();
+		Iterator<Blog> iterator = list.iterator();
+		while(iterator.hasNext()){
+			System.out.println(iterator.next());
 		}
-		return "SSM Test Success!";
+		return "查询blog成功";
 	}
 }

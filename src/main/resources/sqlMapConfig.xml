@@ -21,4 +21,5 @@
         <!-- 扫面指定的包,会把包中所有类设置别名,别名就是类名,并且大小写不敏感 -->
         <package name="com.liuqs.ssmdemo.pojo"/>
     </typeAliases>
+
 </configuration>
