@@ -289,7 +289,7 @@ jdbc.password=密码
     <context:component-scan base-package=controller包路径"/>
 </beans>
 ```
-2. web.xml
+2. web.xml文件
 ```
 <?xml version="1.0" encoding="UTF-8" ?>
 <web-app xmlns="http://java.sun.com/xml/ns/javaee"
